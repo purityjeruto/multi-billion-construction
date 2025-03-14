@@ -1,11 +1,23 @@
-from django.shortcuts import render
+import json
+from pyexpat.errors import messages
+
+import requests
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from requests.auth import HTTPBasicAuth
+
+from multibillionapp.credentials import MpesaAccessToken, LipanaMpesaPpassword
+from multibillionapp.models import appointment, Transaction
+
 
 # Create your views here.
 def about (request):
     return render(request,'about.html')
 def blog_details (request):
     return render(request,'blog_details.html')
-def starter_page(request):
+def starter(request):
     return render(request,'starter-page.html')
 def blog(request):
     return render(request,'blog.html')
