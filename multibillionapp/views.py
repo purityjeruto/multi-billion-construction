@@ -1,5 +1,4 @@
 import json
-from pyexpat.errors import messages
 
 import requests
 from django.contrib.auth import authenticate, login
@@ -7,6 +6,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from requests.auth import HTTPBasicAuth
+
+from django.contrib import messages
 
 from multibillionapp.credentials import MpesaAccessToken, LipanaMpesaPpassword
 from multibillionapp.models import appointment, Transaction
@@ -124,7 +125,7 @@ def login_view(request):
             # login(request, user)
             login(request, user)
             messages.success(request, "You are now logged in!")
-            return redirect('/home')
+            return redirect('/index')
         else:
             messages.error(request, "Invalid login credentials")
 
